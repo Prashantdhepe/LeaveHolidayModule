@@ -31,6 +31,7 @@ class LeaveController extends Controller
             'from_date' => 'required|date',
             'to_date' => 'required|date|after_or_equal:from_date',
             'reason' => 'required|string|max:255',
+            'leave_type_id' => 'required|exists:leave_types,id',
         ]);
 
         return $this->service->create($data);

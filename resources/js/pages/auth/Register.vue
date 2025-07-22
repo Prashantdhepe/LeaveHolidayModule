@@ -4,6 +4,7 @@ import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
@@ -13,6 +14,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    role: '',
 });
 
 const submit = () => {
@@ -39,6 +41,30 @@ const submit = () => {
                     <Input id="email" type="email" required :tabindex="2" autocomplete="email" v-model="form.email" placeholder="email@example.com" />
                     <InputError :message="form.errors.email" />
                 </div>
+
+                <div class="grid gap-2">
+                    <Label for="role">Role</Label>
+
+                    <DropdownMenu>
+                        <DropdownMenuTrigger as-child>
+                        <button
+                            type="button"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2 text-left"
+                        >
+                            {{ form.role || 'Select role' }}
+                        </button>
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent class="w-full">
+                        <DropdownMenuItem @click="form.role = 'user'">User</DropdownMenuItem>
+                        <DropdownMenuItem @click="form.role = 'hr'">HR</DropdownMenuItem>
+                        <DropdownMenuItem @click="form.role = 'super-admin'">Super Admin</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    <InputError :message="form.errors.role" />
+                    </div>
+
 
                 <div class="grid gap-2">
                     <Label for="password">Password</Label>

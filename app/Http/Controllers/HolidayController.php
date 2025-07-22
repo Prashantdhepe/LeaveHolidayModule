@@ -17,7 +17,7 @@ class HolidayController extends Controller
      */
     public function index()
     {
-        return response()->json($this->sevice->getAll());
+        return response()->json($this->service->getAll());
     }
 
     /**
@@ -28,6 +28,7 @@ class HolidayController extends Controller
         $data = $request -> validate([
             'title' => 'required',
             'date' => 'required|date',
+            'holiday_type_id' => 'required|exists:holiday_types,id',
         ]);
         return $this->service->create($data);
     }
