@@ -35,4 +35,9 @@ class LeaveService
     {
         return $this->leaveRepository->delete($id);
     }
+
+    public function getLeaveBalance($userId)
+    {
+        return $this->leaveRepository->getLeaveBalance($userId);
+    }
 }

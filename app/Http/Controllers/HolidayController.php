@@ -30,7 +30,8 @@ class HolidayController extends Controller
             'date' => 'required|date',
             'holiday_type_id' => 'required|exists:holiday_types,id',
         ]);
-        return $this->service->create($data);
+        $holiday = $this->service->create($data);
+        return response()->json(['message'=> 'Holiday created successfully', 'holiday'=> $holiday]);
     }
 
     /**

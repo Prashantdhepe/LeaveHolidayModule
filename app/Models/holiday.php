@@ -20,6 +20,13 @@ class holiday extends Model
         'created_by',
     ];
 
+    protected static function booted()
+    {
+        static::creating(function ($holiday) {
+            $holiday->created_by = auth()->id();
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

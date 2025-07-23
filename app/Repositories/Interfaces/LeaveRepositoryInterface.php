@@ -13,4 +13,6 @@ interface LeaveRepositoryInterface
     public function update($id, string $status);
 
     public function delete($id);
+
+    public function getLeaveBalance($userId);
 }

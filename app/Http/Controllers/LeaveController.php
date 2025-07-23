@@ -17,9 +17,16 @@ class LeaveController extends Controller
         //
     }
 
-    public function userLeave($userId)
+    public function userLeave(Request $request)
     {
+        $userId = $request->user()->id;
         return response()->json($this->service->userLeave($userId));
+    }
+
+    public function balanceLeave(Request $request)
+    {
+       
+        return response()->json($this->service->getLeaveBalance($request->user()->id));
     }
 
     /**
@@ -27,14 +34,8 @@ class LeaveController extends Controller
      */
     public function apply(Request $request)
     {
-        $data = $request->validate([
-            'from_date' => 'required|date',
-            'to_date' => 'required|date|after_or_equal:from_date',
-            'reason' => 'required|string|max:255',
-            'leave_type_id' => 'required|exists:leave_types,id',
-        ]);
-
-        return $this->service->create($data);
+        $leave = $this->service->create($data);
+        return response()->json(['message' => 'Leave applied successfully', 'leave' => $leave]);
     }
 
     /**
@@ -67,10 +68,11 @@ class LeaveController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'status' => 'required|string|in:approved,rejected,pending',
+            'status' => 'required|string|in:approved,rejected',
         ]);
 
-        return $this->service->update($id, $data['status']);
+        $leave = $this->service->update($id, $data['status']);
+        return response()->json(['message' => 'Leave status updated successfully', 'leave' => $leave]);
     }
 
     /**

@@ -18,4 +18,6 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/leaves', [LeaveController::class, 'userLeave']);
     Route::get('/leaves/apply', [LeaveController::class, 'apply']);
     Route::get('/leaves/{id}/status', [LeaveController::class, 'update']);
+    Route::get('/leaves/balance', [LeaveController::class, 'balanceLeave']);
+    Route::get('/leaves/my', [LeaveController::class, 'myLeaves']);
 });

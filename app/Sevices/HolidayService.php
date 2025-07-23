@@ -8,7 +8,7 @@ use App\Models\holiday;
 class HolidayService
 {
 
-    public function __construct(HolidayRepositoryInterface $holidayRepository)
+    public function __construct(protected HolidayRepositoryInterface $holidayRepository)
     {
     }
 
