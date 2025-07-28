@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('leave_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->integer('allowed_per_year')->default(0);
             $table->timestamps();
         });
     }
