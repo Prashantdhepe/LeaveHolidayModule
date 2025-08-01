@@ -1,5 +1,5 @@
 <?php
-
+$this->withoutExceptionHandling();
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
@@ -7,6 +7,7 @@ test('registration screen can be rendered', function () {
 });
 
 test('new users can register', function () {
+    $this->withoutExceptionHandling();
     $response = $this->post('/register', [
         'name' => 'Test User',
         'email' => 'test@example.com',

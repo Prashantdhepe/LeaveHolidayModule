@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(HolidayRepositoryInterface::class, HolidayRepository::class);
         $this->app->bind(LeaveRepositoryInterface::class, LeaveRepository::class);
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
     }
 
     /**

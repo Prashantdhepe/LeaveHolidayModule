@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\EventController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/leaves/balance', [LeaveController::class, 'balanceLeave']);
     Route::get('/leaves/my', [LeaveController::class, 'myLeaves']);
 });
+
+
+Route::apiResource('events', EventController::class);
