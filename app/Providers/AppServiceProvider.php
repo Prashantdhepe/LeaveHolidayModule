@@ -3,6 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\HolidayRepository;
+use App\Repositories\Interfaces\HolidayRepositoryInterface;
+use App\Repositories\LeaveRepository;
+use App\Repositories\Interfaces\LeaveRepositoryInterface;
+use App\Repositories\EventRepository;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {

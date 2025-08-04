@@ -1,5 +1,5 @@
 <?php
-$this->withoutExceptionHandling();
+use function Pest\Laravel\withoutExceptionHandling;
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
@@ -7,12 +7,13 @@ test('registration screen can be rendered', function () {
 });
 
 test('new users can register', function () {
-    $this->withoutExceptionHandling();
+   withoutExceptionHandling();
     $response = $this->post('/register', [
         'name' => 'Test User',
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
+        'role' => 'user',
     ]);
 
     $this->assertAuthenticated();

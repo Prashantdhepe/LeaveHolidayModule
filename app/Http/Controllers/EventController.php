@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function __construct(protected EventService $eventService)
+    public function __construct(protected EventService $service)
     {
     }
 
     public function index()
     {
-        return response()->json($this->eventService->getAllEvents());
+        return response()->json($this->service->getAllEvents());
     }
 
     public function store(Request $request)
@@ -21,15 +21,16 @@ class EventController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'event_date' => 'required|date',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after_or_equal:start_time',
             'event_type_id' => 'required|exists:event_types,id',
         ]);
-        return response()->json($this->eventService->createEvent($data));
+        return response()->json($this->service->createEvent($data));
     }
 
     public function show($id)
     {
-        return response()->json($this->eventService->getEvent($id));
+        return response()->json($this->service->getEvent($id));
     }
 
     public function update(Request $request, $id)
@@ -37,19 +38,20 @@ class EventController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'event_date' => 'required|date',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after_or_equal:start_time',
             'event_type_id' => 'required|exists:event_types,id',
         ]);
-        return response()->json($this->eventService->updateEvent($id, $data));
+        return response()->json($this->service->updateEvent($id, $data));
     }
 
     public function destroy($id)
     {
-        return response()->json($this->eventService->deleteEvent($id));
+        return response()->json($this->service->deleteEvent($id));
     }
 
     public function expireExpiredEvents()
     {
-        return response()->json($this->eventService->deactivateExpiredEvents());
+        return response()->json($this->service->deactivateExpiredEvents());
     }
 }

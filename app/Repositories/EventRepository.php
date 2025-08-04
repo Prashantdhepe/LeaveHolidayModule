@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Event;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 use Carbon\Carbon;
 
 class EventRepository implements EventRepositoryInterface

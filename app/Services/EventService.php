@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\EventRepositoryInterface;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Models\Event;
 
 class EventService
