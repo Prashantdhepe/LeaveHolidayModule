@@ -10,12 +10,12 @@ class EventRepository implements EventRepositoryInterface
 {
     public function all()
     {
-        return Event::with('type')->get();
+        return Event::with('eventType')->get();
     }
 
     public function find($id)
     {
-        return Event::with('type')->findOrFail($id);
+        return Event::with('eventType')->findOrFail($id);
     }
 
     public function create(array $data)
@@ -38,7 +38,7 @@ class EventRepository implements EventRepositoryInterface
 
     public function deactivateExpiredEvents()
     {
-        return Event::where('event_date', '<', Carbon::today())
+        return Event::where('start_time', '<', Carbon::today())
             ->where('is_active', true)
             ->update(['is_active' => false]);
     }
