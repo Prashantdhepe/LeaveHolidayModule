@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->string('subject');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->unsignedBigInteger('exam_types_id');
-            $table->unsignedBigInteger('standard_id');
-            $table->foreign('exam_types_id')->references('id')->on('exam_types')->onDelete('cascade');
-            $table->foreign('standard_id')->references('id')->on('standards')->onDelete('cascade');
+            $table->foreignId('standard_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
+            $table->foreignId('exam_type_id')->constrained()->onDelete('cascade');
+            $table->date('exam_date');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
         });
     }

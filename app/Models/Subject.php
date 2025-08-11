@@ -11,7 +11,11 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'icon',
+        'standard_id'
+    ];
 
     public function exams()
     {

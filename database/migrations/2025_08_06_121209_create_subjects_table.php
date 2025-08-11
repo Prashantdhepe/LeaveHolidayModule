@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('label');
+            $table->string('icon')->nullable(); 
+            $table->unsignedBigInteger('standard_id'); 
+            $table->foreign('standard_id')->references('id')->on('standards')->onDelete('cascade');
             $table->timestamps();
         });
     }

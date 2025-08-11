@@ -13,7 +13,14 @@ class Exam extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['subject', 'start_date', 'end_date', 'exam_type_id', 'standard_id'];
+     protected $fillable = [
+        'standard_id', 
+        'subject_id', 
+        'exam_type_id',
+        'exam_date', 
+        'start_time', 
+        'end_time'
+    ];
 
     public function examType()
     {
