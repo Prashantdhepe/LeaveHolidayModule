@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ExamController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -25,3 +26,4 @@ Route::middleware('auth:sanctum')->group(function (){
 
 
 Route::apiResource('events', EventController::class);
+Route::apiResource('exams', ExamController::class);
