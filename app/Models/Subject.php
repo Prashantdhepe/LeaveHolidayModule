@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Exam;
+use App\Models\Question;
 
 class Subject extends Model
 {
@@ -20,5 +21,9 @@ class Subject extends Model
     public function exams()
     {
         return $this->hasMany(Exam::class);
+    }
+
+    public function question(){
+        return $this->hasMany(Question::class);
     }
 }
